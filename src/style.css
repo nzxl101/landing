@@ -1,27 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
-
-:root {
-    --base-bg-color: #09090b;
-    --base-bg-color-2: black;
-}
-
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
+@import url("https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap");
 
 body {
     margin: 0;
-    font-family: "Inter", sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+    font-family: "Doto", monospace;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: var(--base-bg-color-2);
+    background-color: #000;
     color: #e0e0e0;
     line-height: 1.6;
 }
@@ -36,15 +24,14 @@ body {
     animation: fadeIn 0.5s ease-out;
     transform-origin: top left;
     box-shadow:
-        0 8px 15px rgba(0, 0, 0, 0.4),
-        0 0 10px rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
+        0 0 20px rgba(255, 255, 255, 0.1),
+        0 0 40px rgba(255, 255, 255, 0.05);
     position: relative;
     z-index: 0;
+    border: 1px solid #666;
 }
 
 .card {
-    border-radius: 15px;
     position: relative;
     overflow: hidden;
     z-index: 1;
@@ -52,27 +39,115 @@ body {
     background-color: transparent;
 }
 
-.card::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(from 90deg, violet, indigo, blue, green, yellow, orange, red, violet);
-    animation: rotate 10s linear infinite;
-    z-index: 2;
-    border-radius: 15px;
-    opacity: 0.75;
-}
-
 .card::after {
     content: "";
     position: absolute;
     inset: 2px;
-    background-color: var(--base-bg-color);
-    border-radius: 15px;
+    background: #000;
     z-index: 3;
+}
+
+.scanlines {
+    position: absolute;
+    inset: 2px;
+    background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25) 1px, transparent 1px, transparent 3px);
+    pointer-events: none;
+    z-index: 5;
+    animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.98;
+    }
+}
+
+.corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    z-index: 6;
+    pointer-events: none;
+}
+
+.corner::before,
+.corner::after {
+    content: "";
+    position: absolute;
+    background: #888;
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.top-left {
+    top: 4px;
+    left: 4px;
+}
+.top-left::before {
+    width: 10px;
+    height: 2px;
+    top: 0;
+    left: 0;
+}
+.top-left::after {
+    width: 2px;
+    height: 10px;
+    top: 0;
+    left: 0;
+}
+
+.top-right {
+    top: 4px;
+    right: 4px;
+}
+.top-right::before {
+    width: 10px;
+    height: 2px;
+    top: 0;
+    right: 0;
+}
+.top-right::after {
+    width: 2px;
+    height: 10px;
+    top: 0;
+    right: 0;
+}
+
+.bottom-left {
+    bottom: 4px;
+    left: 4px;
+}
+.bottom-left::before {
+    width: 10px;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+}
+.bottom-left::after {
+    width: 2px;
+    height: 10px;
+    bottom: 0;
+    left: 0;
+}
+
+.bottom-right {
+    bottom: 4px;
+    right: 4px;
+}
+.bottom-right::before {
+    width: 10px;
+    height: 2px;
+    bottom: 0;
+    right: 0;
+}
+.bottom-right::after {
+    width: 2px;
+    height: 10px;
+    bottom: 0;
+    right: 0;
 }
 
 .card-content {
@@ -81,12 +156,8 @@ body {
     text-align: center;
     background-color: transparent;
     padding: 20px 30px;
-    border-radius: 15px;
-    transform-origin: top left;
-    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
@@ -101,39 +172,30 @@ body {
     }
 }
 
-.header-image {
+.ascii-logo {
     width: 100%;
-    max-width: 300px;
-    height: auto;
-    transform: translate(7.5px, 10px);
-}
-
-p {
-    color: #a0a0a0;
-    margin-bottom: 15px;
-    font-size: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
+    transform: scale(0.75);
+    clip-path: inset(12% 0 12% 0);
+    margin: -90px 0;
 }
 
 .links {
-    margin-bottom: 20px;
+    margin-top: 15px;
     display: flex;
     justify-content: center;
     gap: 10px;
+    font-family: "Doto", monospace;
 }
 
 .icon {
-    font-size: 20px;
-    color: #e0e0e0;
+    font-size: 16px;
+    color: #bbb;
     flex-shrink: 0;
 }
 
 .badge-icon {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     object-fit: contain;
 }
 
@@ -141,75 +203,89 @@ p {
     margin-top: 20px;
     padding-top: 15px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.notifiarr-section p {
-    font-size: 0.9em;
-}
-
-.project-badge {
-    background: rgba(9, 9, 11, 0.7);
-    backdrop-filter: blur(12px) saturate(180%);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
-    border-radius: 12px;
-    padding: 8px 15px;
-    font-size: 0.9em;
-    color: #e0e0e0;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow:
-        0 4px 15px rgba(0, 0, 0, 0.3),
-        inset 0 0 2px rgba(255, 255, 255, 0.1);
-    display: inline-flex;
-    align-items: center;
-    transition:
-        background-color 0.3s,
-        transform 0.2s,
-        box-shadow 0.3s;
-    text-decoration: none;
-    z-index: 1;
-}
-
-.project-badge:hover {
-    background-color: rgba(9, 9, 11, 0.9);
-    transform: translateY(-3px) scale(1.04);
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.4),
-        inset 0 0 2px rgba(255, 255, 255, 0.1);
-}
-
-.link-badge {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    padding: 0;
+    display: flex;
+    gap: 10px;
     justify-content: center;
 }
 
-.dockwatch-badge {
-    padding: 3px 12px;
+.project-badge {
+    background: rgba(30, 30, 30, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 8px 15px;
+    font-size: 0.75em;
+    color: #ccc;
+    box-shadow:
+        0 0 10px rgba(255, 255, 255, 0.05),
+        inset 0 0 20px rgba(255, 255, 255, 0.02);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    z-index: 1;
+    font-family: "Doto", monospace;
+    height: 28px;
+    box-sizing: border-box;
 }
 
-.notifiarr-badge {
-    padding: 3px 12px;
+.project-badge:hover {
+    background: rgba(50, 50, 50, 0.8);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow:
+        0 0 15px rgba(255, 255, 255, 0.1),
+        inset 0 0 15px rgba(255, 255, 255, 0.05);
+    color: #fff;
+    animation: glitch-hover 0.4s infinite;
+}
+
+@keyframes glitch-hover {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+.link-badge {
+    border-radius: 0;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    justify-content: center;
+    background: rgba(30, 30, 30, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow:
+        0 0 10px rgba(255, 255, 255, 0.05),
+        inset 0 0 20px rgba(255, 255, 255, 0.02);
+    transition: all 0.2s ease;
+}
+
+.link-badge:hover {
+    background: rgba(50, 50, 50, 0.8);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow:
+        0 0 15px rgba(255, 255, 255, 0.1),
+        inset 0 0 15px rgba(255, 255, 255, 0.05);
+    animation: glitch-hover 0.4s infinite;
+}
+
+.project-link {
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    box-sizing: border-box;
 }
 
 .badge-logo {
     height: 1.5em;
     width: auto;
-    object-fit: contain;
-    vertical-align: middle;
-    margin-right: -25px;
-    transform: translate(-15px, -1px);
-}
-
-.dockwatch-badge .badge-logo {
-    margin-left: 8px;
-}
-
-.notifiarr-badge .badge-logo {
-    margin-left: 20px;
-    margin-right: -18px;
-    height: 1.2em;
-    transform: translate(-15px, -0.25px);
+    margin-left: 6px;
 }
