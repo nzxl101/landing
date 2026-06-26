@@ -1,0 +1,171 @@
+@import url("https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap");
+
+html {
+    font-size: clamp(14px, 1.8vw, 20px);
+}
+
+*, *::before, *::after {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+body {
+    margin: 0;
+    font-family: "Doto", monospace;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f6f6f8;
+    background-image:
+        radial-gradient(ellipse at 15% 50%, rgba(100, 170, 255, 0.10) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 20%, rgba(255, 80, 170, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 85%, rgba(160, 80, 255, 0.06) 0%, transparent 50%);
+    color: #1a1a1a;
+    line-height: 1.6;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.container {
+    width: min(580px, 88vw);
+    padding: clamp(24px, 4vw, 40px) clamp(12px, 3vw, 20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(16px, 2vw, 24px);
+    animation: fadeIn 0.6s ease;
+}
+
+.signature {
+    max-width: min(800px, 90vw);
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: -30px;
+    animation: fadeUp 0.7s ease;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    gap: clamp(6px, 0.8vw, 8px);
+}
+
+.icon {
+    font-size: clamp(12px, 1.4vw, 15px);
+    color: #888;
+    flex-shrink: 0;
+    transition: color 0.2s ease;
+}
+
+.link-badge {
+    --hover-color: #333;
+    width: clamp(28px, 3.5vw, 36px);
+    height: clamp(28px, 3.5vw, 36px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid #d4d4d8;
+    border-radius: 8px;
+    background: #fff;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    animation: fadeUp 0.5s ease both;
+}
+
+.link-badge:nth-child(1) { animation-delay: 0.08s; }
+.link-badge:nth-child(2) { animation-delay: 0.14s; }
+.link-badge:nth-child(3) { animation-delay: 0.20s; }
+.link-badge:nth-child(4) { animation-delay: 0.26s; }
+.link-badge:nth-child(5) { animation-delay: 0.32s; }
+
+.link-badge:hover {
+    border-color: var(--hover-color);
+    box-shadow: 0 0 20px color-mix(in srgb, var(--hover-color) 25%, transparent);
+    scale: 1.12;
+}
+
+.link-badge:hover .icon {
+    color: var(--hover-color);
+}
+
+.badge-icon {
+    width: clamp(14px, 1.6vw, 18px);
+    height: clamp(14px, 1.6vw, 18px);
+    object-fit: contain;
+    opacity: 0.75;
+    transition: opacity 0.2s ease;
+}
+
+.link-badge:hover .badge-icon {
+    opacity: 1;
+}
+
+.section-divider {
+    width: 100%;
+    border-top: 1px solid #e4e4e7;
+    animation: fadeIn 0.6s ease 0.35s both;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(6px, 0.8vw, 8px);
+    width: 100%;
+}
+
+.project-badge {
+    background: #fff;
+    border: 1.5px solid #e4e4e7;
+    border-radius: 8px;
+    padding: clamp(4px, 0.8vw, 8px) clamp(10px, 1.5vw, 15px);
+    font-size: clamp(0.55em, 0.8vw, 0.7em);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #888;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+    text-decoration: none;
+    font-family: "Doto", monospace;
+    font-weight: 900;
+    height: clamp(26px, 3vw, 30px);
+    box-sizing: border-box;
+    gap: 6px;
+    animation: fadeUp 0.5s ease both;
+}
+
+.project-badge:nth-child(1) { animation-delay: 0.38s; }
+.project-badge:nth-child(2) { animation-delay: 0.44s; }
+.project-badge:nth-child(3) { animation-delay: 0.50s; }
+.project-badge:nth-child(4) { animation-delay: 0.56s; }
+.project-badge:nth-child(5) { animation-delay: 0.62s; }
+.project-badge:nth-child(6) { animation-delay: 0.68s; }
+
+.project-badge:hover {
+    border-color: #c4c4c7;
+    background: #fafafa;
+    color: #444;
+}
+
+.badge-logo {
+    height: 1.2em;
+    width: auto;
+}
